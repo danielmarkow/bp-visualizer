@@ -87,8 +87,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col p-24">
-      <div className="flex flex-col gap-y-2">
-        <div className="flex w-1/4 flex-col gap-y-1">
+      <div className="flex flex-col gap-y-2 w-full lg:w-1/2">
+        <div className="flex flex-col gap-y-1">
           <label htmlFor="bp-patient" className="block text-sm">
             Name
           </label>
@@ -101,7 +101,7 @@ export default function Home() {
             onChange={(e) => setPatientName(e.target.value)}
           />
         </div>
-        <div className="flex w-1/4 flex-col gap-y-1">
+        <div className="flex flex-col gap-y-1">
           <label htmlFor="bp-insurance-no" className="block text-sm">
             Versichertennummer
           </label>
@@ -114,7 +114,7 @@ export default function Home() {
             onChange={(e) => setPatientInsurance(e.target.value)}
           />
         </div>
-        <div className="flex w-1/4 flex-col gap-y-1">
+        <div className="flex flex-col gap-y-1">
           <label htmlFor="bp-readings" className="block text-sm">
             Datei Upload
           </label>
