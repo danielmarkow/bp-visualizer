@@ -15,7 +15,10 @@ export default function Home() {
   const reactToPrintContent = useCallback(() => {
     return componentRef.current;
   }, [componentRef.current]);
-  const handlePrint = useReactToPrint({ content: reactToPrintContent, bodyClass: "p-2" });
+  const handlePrint = useReactToPrint({
+    content: reactToPrintContent,
+    bodyClass: "p-2",
+  });
 
   const sortMeasurementDates = (readings: BloodPressureReadings) => {
     return Object.keys(readings)
@@ -45,13 +48,13 @@ export default function Home() {
       const dataSplit = data.split("\n");
 
       const re =
-        /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{1,3},\d{1,3},\d{1,3})$/;
+        /^("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}",\d{1,3},\d{1,3},\d{1,3},)$/;
 
       const readings: BloodPressureReadings = {};
       for (const row of dataSplit) {
         if (re.test(row.trim())) {
           const [ts, sys, dia, puls] = row.trim().split(",");
-          const measurementTs = new Date(ts);
+          const measurementTs = new Date(ts.slice(1, -1));
           const measurementDate = measurementTs.toISOString().split("T")[0];
 
           if (measurementDate in readings) {
@@ -87,7 +90,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col p-24">
-      <div className="flex flex-col gap-y-2 w-full lg:w-1/2">
+      <div className="flex w-full flex-col gap-y-2 lg:w-1/2">
         <div className="flex flex-col gap-y-1">
           <label htmlFor="bp-patient" className="block text-sm">
             Name
