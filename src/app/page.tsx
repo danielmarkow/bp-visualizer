@@ -53,7 +53,7 @@ export default function Home() {
       const readings: BloodPressureReadings = {};
       for (const row of dataSplit) {
         if (re.test(row.trim())) {
-          const [ts, sys, dia, puls] = row.trim().split(",");
+          const [ts, puls, sys, dia] = row.trim().split(",");
           const measurementTs = new Date(ts.slice(1, -1));
           const measurementDate = measurementTs.toISOString().split("T")[0];
 
