@@ -112,9 +112,6 @@ export default function Home() {
           />
         </div>
         <div className="flex flex-col gap-y-1">
-          <label htmlFor="bp-readings" className="block text-sm">
-            Datei Upload
-          </label>
           <input
             type="file"
             id="bp-readings"
@@ -131,7 +128,7 @@ export default function Home() {
             onClick={handlePrint}
             className="rounded-lg border-2 border-slate-700 bg-slate-100 px-2 py-0.5 hover:bg-slate-200"
           >
-            Print
+            Drucken
           </button>
         </div>
       </div>
