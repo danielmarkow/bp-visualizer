@@ -3,22 +3,16 @@
 import Table from "@/components/Table";
 import type { BloodPressureReadings } from "@/types/blood-pressure-readings";
 import { nanoid } from "nanoid";
-import { ChangeEvent, useCallback, useRef, useState } from "react";
-import { useReactToPrint } from "react-to-print";
+import { ChangeEvent, useState } from "react";
 
 export default function Home() {
   const [patientName, setPatientName] = useState<string>("");
   const [patientInsurance, setPatientInsurance] = useState<string>("");
   const [bpData, setBpData] = useState<BloodPressureReadings>({});
 
-  const componentRef = useRef<HTMLDivElement>(null);
-  const reactToPrintContent = useCallback(() => {
-    return componentRef.current;
-  }, [componentRef.current]);
-  const handlePrint = useReactToPrint({
-    content: reactToPrintContent,
-    bodyClass: "p-2",
-  });
+  const handlePrint = () => {
+    window.print();
+  };
 
   const sortMeasurementDates = (readings: BloodPressureReadings) => {
     return Object.keys(readings)
@@ -90,7 +84,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col p-24">
-      <div className="flex w-full flex-col gap-y-2 lg:w-1/2">
+      <div className="flex w-full flex-col gap-y-2 lg:w-1/2 print:hidden">
         <div className="flex flex-col gap-y-1">
           <label htmlFor="bp-patient" className="block text-sm">
             Name
@@ -141,9 +135,9 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="h-4 lg:w-2/3" />
-      <hr className="h-px border-0 bg-slate-500 lg:w-2/3" />
-      <div id="printContent" ref={componentRef}>
+      <div className="h-4 lg:w-2/3 print:hidden" />
+      <hr className="h-px border-0 bg-slate-500 lg:w-2/3 print:hidden" />
+      <div id="printContent">
         <div className="h-4" />
         {patientName.length > 0 && Object.keys(bpData).length > 0 ? (
           <p className="text-xl font-semibold">
