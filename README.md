@@ -19,6 +19,11 @@ The measurements must be in the following format for upload. This corresponds to
 ...
 ```
 
+## Help out
+If you find this useful consider:
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/danielmarkow)
+
 ## To Dos
 - Plot daily measurements in a useful chart
 - Checkout Withings API for data retrieval
